@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="pt">
-<head>
+<head><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=999"><link rel="apple-touch-icon" href="/logo.svg?v=999">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kyvorix - Solitaire & Jogos Casuais Gratis</title>
@@ -37,6 +37,7 @@ footer a{color:#fff}
 </style>
 </head>
 <body>
+<div style="text-align:center;padding:14px 0 0"><img src="/logo.svg?v=999" alt="Kyvorix" style="width:min(220px,80vw);height:auto;display:block;margin:0 auto"></div>
 <header><b>KYVORIX</b><nav><a class="active" href="#">Home</a><a href="#collection">Collection</a><a href="#casual">Casuais</a><a href="#">Recompensas</a></nav><div>🔍 ⭐ 👤</div></header>
 <div class="wrap">
 <div id="collection"><h1>Kyvorix Collection</h1><p class="sub">Os teus jogos de cartas - continua onde ficaste</p>
@@ -57,7 +58,7 @@ footer a{color:#fff}
 <a class="card" href="games/gravity/"><div class="art" style="background:#a8e063">🧱</div><div class="name">Gravity Blocks</div></a>
 <a class="card" href="games/gemdrop/"><div class="art" style="background:#ffe08a">💠</div><div class="name">Gem Drop</div></a>
 <a class="card" href="games/mahjong3d/"><div class="art" style="background:#bfe3ff">🧊</div><div class="name">Mahjong 3D</div></a>
-<a class="card" href="games/sudoku/"><div class="art" style="background:#c9d6ff">🔢</div><div class="name">Sudoku</div></a>
+
 </div></div></div>
 <footer>© 2026 Kyvorix • <a href="privacy/">Privacy</a> • <a href="terms/">Terms</a> • <a href="contact/">Contact</a><br>Joga gratis em kyvorixapp.com</footer>
 <script>
@@ -65,5 +66,26 @@ document.querySelectorAll('[data-level]').forEach(el=>{el.textContent = localSto
 document.getElementById('today').textContent = new Date().toLocaleDateString('pt-PT');
 if('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js');
 </script>
+<script>
+function lv(k){return localStorage.getItem(k)||'1'}
+document.addEventListener('DOMContentLoaded',()=>{
+let map={'mahjong':'kyvorix_mahjong_level','bubble':'kyvorix_bubble_level','jewel':'kyvorix_jewel_level','gravity':'kyvorix_gravity_level','gemdrop':'kyvorix_gemdrop_level','mahjong3d':'kyvorix_mahjong3d_level'};
+document.querySelectorAll('a').forEach(a=>{
+  let h=a.getAttribute('href')||'';
+  for(let k in map){ if(h.includes(k)){ let b=document.createElement('span'); b.textContent=' ⭐ Nv '+lv(map[k]); b.style.cssText='background:#ffb800;color:#000;font-size:11px;font-weight:800;padding:2px 7px;border-radius:999px;margin-left:6px'; a.appendChild(b); } }
+});
+});
+</script>
+<script>(function(s){s.dataset.zone='12235212',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>(function(s){s.dataset.zone='12235214',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
