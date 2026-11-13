@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mahjong - Kyvorix</title>
+<style>body{margin:0;background:#0a3d2a;color:#fff;font-family:system-ui;text-align:center}header{padding:8px}header a{color:#fff;text-decoration:none;font-weight:800}.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;max-width:520px;margin:10px auto;padding:10px}.tile{background:#fff;color:#111;border-radius:8px;padding:16px 4px;font-size:24px;cursor:pointer}.tile.sel{outline:3px solid #ffb800;background:#ffe08a}.tile.gone{visibility:hidden}.tile.blocked{opacity:.55}button{background:#ffb800;border:0;padding:10px 16px;border-radius:999px;font-weight:800;margin:4px;cursor:pointer}</style></head><body>
+<header><a href="/">← VOLTAR</a><h1>🀄 Mahjong</h1></header><div style="background:rgba(0,0,0,.3);padding:8px;font-size:13px">💾 Gravação automática | <button onclick="localStorage.removeItem('kyv_save_mahjong');location.reload()">🆕 Novo Jogo</button></div>
+<div>XP: <span id="xp">0</span> | Restam: <span id="left">64</span></div><div class="grid" id="grid"></div><div id="msg"></div><button onclick="undo()">↩️ Desfazer</button>
+<script>
+const KEY='kyv_save_mahjong';
+function beep(f){try{let a=new (window.AudioContext||window.webkitAudioContext)();let o=a.createOscillator();o.frequency.value=f||600;o.connect(a.destination);o.start();o.stop(a.currentTime+0.08)}catch(e){}}
+function addXP(n){let x=parseInt(localStorage.getItem('kyv_xp')||'0')+n;localStorage.setItem('kyv_xp',x);document.getElementById('xp').textContent=x}
+document.getElementById('xp').textContent=localStorage.getItem('kyv_xp')||'0';
+let tiles,sel=null,hist=[];
+function initFresh(){let emojis=['🀄','🎋','🀇','🀈','🀉','🀊','🀋','🀌','🀍','🀎','🀏','🀐','🌸','🍀','🎲','🐉'];tiles=[];emojis.forEach(e=>{tiles.push(e);tiles.push(e);tiles.push(e);tiles.push(e)});tiles.sort(()=>Math.random()-.5)}
+function load(){try{let s=JSON.parse(localStorage.getItem(KEY));if(s&&s.length==64){tiles=s;return true}}catch(e){}return false}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(tiles))}catch(e){}}
+if(!load())initFresh();
+function save(){hist.push(JSON.stringify(tiles));if(hist.length>50)hist.shift()}
+function undo(){if(!hist.length)return;tiles=JSON.parse(hist.pop());sel=null;render()}
+function isFree(i){if(tiles[i]=='GONE')return false;let col=i%8;let leftGone=(col==0)||tiles[i-1]=='GONE';let rightGone=(col==7)||tiles[i+1]=='GONE';return leftGone||rightGone}
+function render(){persist();document.getElementById('left').textContent=tiles.filter(t=>t!='GONE').length;let g=document.getElementById('grid');g.innerHTML='';tiles.forEach((t,i)=>{let d=document.createElement('div');d.className='tile'+(t=='GONE'?' gone':'')+(sel==i?' sel':'')+(t!='GONE'&&!isFree(i)?' blocked':'');d.textContent=t=='GONE'?'':t;d.onclick=()=>{if(t=='GONE'||!isFree(i))return;if(sel===null){sel=i;render();return}if(sel==i){sel=null;render();return}if(tiles[sel]==t){save();tiles[sel]='GONE';tiles[i]='GONE';sel=null;beep(700);addXP(10);if(tiles.every(x=>x=='GONE')){document.getElementById('msg').textContent='🎉 GANHASTE! +100 XP';addXP(100);localStorage.removeItem(KEY)}render()}else{sel=i;render()}};g.appendChild(d)})}
+render();
+</script></body></html>

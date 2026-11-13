@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jewel - Kyvorix</title>
+<style>body{margin:0;background:#1a0a3d;color:#fff;font-family:system-ui;text-align:center}header{padding:8px}header a{color:#fff;text-decoration:none;font-weight:800}.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;max-width:420px;margin:10px auto;padding:8px}.cell{background:#2a1a5e;border-radius:10px;font-size:26px;padding:12px 2px;cursor:pointer}.cell.sel{outline:3px solid #ffb800}button{background:#ffb800;border:0;padding:10px 16px;border-radius:999px;font-weight:800;margin:4px;cursor:pointer}</style></head><body>
+<header><a href="/">← VOLTAR</a><h1>💎 Jewel</h1></header><div style="background:rgba(0,0,0,.3);padding:8px;font-size:13px">💾 Pontos gravados | <button onclick="localStorage.removeItem('kyv_save_jewel');location.reload()">🆕 Novo Jogo</button></div>
+<div>Pontos: <span id="pts">0</span> | XP: <span id="xp">0</span></div><div class="grid" id="grid"></div>
+<script>
+const KEY='kyv_save_jewel';
+function beep(f){try{let a=new (window.AudioContext||window.webkitAudioContext)();let o=a.createOscillator();o.frequency.value=f||600;o.connect(a.destination);o.start();o.stop(a.currentTime+0.08)}catch(e){}}
+function addXP(n){let x=parseInt(localStorage.getItem('kyv_xp')||'0')+n;localStorage.setItem('kyv_xp',x);document.getElementById('xp').textContent=x}
+document.getElementById('xp').textContent=localStorage.getItem('kyv_xp')||'0';
+let gems=['💎','💚','❤️','💜','💛','💙'];let board,sel=null,pts=0,busy=false;
+function initFresh(){board=[];for(let i=0;i<64;i++)board.push(gems[Math.floor(Math.random()*6)]);pts=0}
+function load(){try{let s=JSON.parse(localStorage.getItem(KEY));if(s&&s.board){board=s.board;pts=s.pts;return true}}catch(e){}return false}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({board,pts}))}catch(e){}}
+if(!load())initFresh();
+function render(){persist();let g=document.getElementById('grid');g.innerHTML='';board.forEach((v,i)=>{let d=document.createElement('div');d.className='cell'+(sel==i?' sel':'');d.textContent=v;d.onclick=()=>click(i);g.appendChild(d)});document.getElementById('pts').textContent=pts}
+function click(i){if(busy)return;if(sel===null){sel=i;render();return}let r1=Math.floor(sel/8),c1=sel%8,r2=Math.floor(i/8),c2=i%8;if(Math.abs(r1-r2)+Math.abs(c1-c2)!=1){sel=i;render();return}let oldSel=sel;let t=board[oldSel];board[oldSel]=board[i];board[i]=t;sel=null;if(!findMatches().size){let t2=board[i];board[i]=board[oldSel];board[oldSel]=t2;render();return}busy=true;doCascade();render()}
+function findMatches(){let s=new Set();for(let r=0;r<8;r++)for(let c=0;c<6;c++){let i=r*8+c;if(board[i]&&board[i]==board[i+1]&&board[i]==board[i+2]){s.add(i);s.add(i+1);s.add(i+2)}}for(let c=0;c<8;c++)for(let r=0;r<6;r++){let i=r*8+c;if(board[i]&&board[i]==board[i+8]&&board[i]==board[i+16]){s.add(i);s.add(i+8);s.add(i+16)}}return s}
+function doCascade(){let m=findMatches();if(!m.size){busy=false;render();return}pts+=m.size*10;addXP(m.size);beep(700);m.forEach(i=>board[i]=null);render();setTimeout(()=>{for(let c=0;c<8;c++){let col=[];for(let r=7;r>=0;r--){let v=board[r*8+c];if(v)col.push(v)}while(col.length<8)col.push(gems[Math.floor(Math.random()*6)]);for(let r=7;r>=0;r--)board[r*8+c]=col[7-r]}doCascade();render()},350)}
+render();
+</script></body></html>
