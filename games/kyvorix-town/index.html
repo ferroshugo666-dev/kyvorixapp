@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kyvorix Town</title>
+<style>body{font-family:sans-serif;background:#b8e986;text-align:center;padding:10px} .top{background:#fff;padding:10px;border-radius:12px;display:flex;justify-content:space-around;font-weight:bold} .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:400px;margin:15px auto} .card{background:#fff;border-radius:14px;padding:15px;cursor:pointer;font-size:28px} button{padding:12px 20px;border:0;border-radius:10px;background:#ff9800;color:#fff;font-weight:bold} #log{background:#fff;border-radius:10px;padding:10px;max-width:400px;margin:10px auto;text-align:left}</style></head>
+<body><h1>🏡 Kyvorix Town</h1><p>Jardim, casa, carros, lago e animais!</p>
+<div class="top"><span>🪙 <b id="coins">100</b></span><span>🏠 <b id="houses">0</b></span><span>🐄 <b id="animals">0</b>/5</span></div>
+<div class="grid">
+<div class="card" onclick="act('garden')">🌻<br><small>Jardim +10</small></div>
+<div class="card" onclick="act('house')">🏠<br><small>Casa -50</small></div>
+<div class="card" onclick="act('car')">🚗<br><small>Carro +15</small></div>
+<div class="card" onclick="act('lake')">🏖️<br><small>Lago +20</small></div>
+<div class="card" onclick="act('find')">🔍<br><small>Encontrar Animal</small></div>
+<div class="card" onclick="act('feed')">🥕<br><small>Alimentar +10</small></div></div>
+<div id="log">Bem-vindo! Clica no Jardim.</div><br><button onclick="location.reload()">Recomeçar</button>
+<script>let c=100,h=0,a=0;let list=['🐄 Vaca','🐔 Galinha','🐷 Porco','🐑 Ovelha','🐶 Cão'];
+function up(){document.getElementById('coins').innerText=c;document.getElementById('houses').innerText=h;document.getElementById('animals').innerText=a;}
+function lg(t){document.getElementById('log').innerHTML=t+'<br>'+document.getElementById('log').innerHTML;}
+function act(t){if(t=='garden'){c+=10;lg('🌻 Jardim +10')}if(t=='house'){if(c>=50){c-=50;h++;lg('🏠 Casa construída!')}else lg('❌ Precisas 50')}if(t=='car'){c+=15;lg('🚗 Entrega +15')}if(t=='lake'){c+=20;lg('🎣 Pescaste +20')}if(t=='find'){if(a<5){lg('🎉 Encontraste: '+list[a]);a++;}else lg('✅ Já tens todos!')}if(t=='feed'){if(a>0){c+=10;lg('🥕 Alimentaste +10')}else lg('🔍 Encontra 1 animal primeiro')}if(a==5&&h>=1)lg('🏆 PARABÉNS! Cidade completa!');up();}up();</script></body></html>

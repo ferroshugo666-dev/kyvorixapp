@@ -1,0 +1,9 @@
+﻿<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kyvorix Quinta</title>
+<style>body{font-family:sans-serif;background:#ffe9a8;text-align:center;padding:10px} .card{background:#fff;border-radius:14px;padding:15px;margin:10px auto;max-width:350px;cursor:pointer;font-size:22px} button{padding:12px 20px;border:0;border-radius:10px;background:#4caf50;color:#fff;font-weight:bold}</style></head>
+<body><h1>🌾 Kyvorix Quinta</h1><h2>🪙 <span id="coins">50</span> | 🌽 <span id="colheita">0</span></h2>
+<div class="card" onclick="a('plantar')">🌱 Plantar Milho</div>
+<div class="card" onclick="a('colher')">🌽 Colher (+20)</div>
+<div class="card" onclick="a('galinha')">🐔 Alimentar Galinha (+15)</div>
+<div class="card" onclick="a('vaca')">🐄 Ordenhar Vaca (+25)</div>
+<div id="log" style="background:#fff;padding:10px;border-radius:10px;max-width:350px;margin:auto">Bem-vindo à quinta!</div>
+<script>let c=50,co=0;function a(t){let l=document.getElementById('log');if(t=='plantar'){l.innerHTML='🌱 Plantaste! Agora colhe.'}if(t=='colher'){c+=20;co++;l.innerHTML='🌽 Colheste +20!'}if(t=='galinha'){c+=15;l.innerHTML='🐔 Galinha deu ovos +15'}if(t=='vaca'){c+=25;l.innerHTML='🐄 Vaca deu leite +25'}document.getElementById('coins').innerText=c;document.getElementById('colheita').innerText=co;}</script></body></html>
