@@ -1,91 +1,14 @@
-﻿<!DOCTYPE html>
-<html lang="pt">
-<head><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=999"><link rel="apple-touch-icon" href="/logo.svg?v=999">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kyvorix - Solitaire & Jogos Casuais Gratis</title>
-<meta name="description" content="Joga Klondike, Spider, FreeCell, Pyramid, TriPeaks, Mahjong, Bubble, Sudoku e mais. Gratis, sem instalar, no Kyvorix.">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0b6cff">
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Arial}
-body{background:#0b6cff;color:#fff}
-header{background:#004fd1;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-header b{font-size:28px;letter-spacing:1px}
-header nav a{color:#bcd7ff;text-decoration:none;margin:0 12px;font-weight:600}
-header nav a.active{color:#fff}
-.wrap{max-width:1200px;margin:0 auto;padding:24px}
-h1{font-size:34px} .sub{opacity:.9;margin:6px 0 18px}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)} header nav{display:none}}
-.card{background:#fff;color:#111;border-radius:16px;overflow:hidden;cursor:pointer;transition:.15s;text-decoration:none}
-.card:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,.3)}
-.card .art{height:150px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
-.card .lvl{position:absolute;top:10px;right:10px;background:#0b6cff;color:#fff;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px}
-.card .name{padding:12px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
-.card .play{background:#0b6cff;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.casual{margin-top:32px}
-.casual .grid{grid-template-columns:repeat(7,1fr)}
-@media(max-width:800px){.casual .grid{grid-template-columns:repeat(3,1fr)}}
-.casual .card .art{height:110px;font-size:48px}
-.casual .card .name{justify-content:center;font-size:14px}
-.ad{background:#eaf2ff;color:#333;border:2px dashed #9db8ff;border-radius:12px;padding:18px;text-align:center;margin:24px 0;font-size:14px}
-.daily{background:#fff;color:#111;border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-top:24px}
-.daily button{background:#ffb800;border:0;padding:12px 18px;border-radius:999px;font-weight:800;cursor:pointer}
-footer{max-width:1200px;margin:20px auto;padding:20px;color:#cfe0ff;font-size:13px;text-align:center}
-footer a{color:#fff}
-</style>
-</head>
-<body>
-<div style="text-align:center;padding:14px 0 0"><img src="/logo.svg?v=999" alt="Kyvorix" style="width:min(220px,80vw);height:auto;display:block;margin:0 auto"></div>
-<header><b>KYVORIX</b><nav><a class="active" href="#">Home</a><a href="#collection">Collection</a><a href="#casual">Casuais</a><a href="#">Recompensas</a></nav><div>🔍 ⭐ 👤</div></header>
-<div class="wrap">
-<div id="collection"><h1>Kyvorix Collection</h1><p class="sub">Os teus jogos de cartas - continua onde ficaste</p>
+﻿<!DOCTYPE html><html lang="pt"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kyvorix App - Jogos</title>
+<style>body{font-family:sans-serif;background:#f0f0f0;text-align:center;padding:15px}h1{font-size:28px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:500px;margin:15px auto}.card{background:#fff;border-radius:16px;padding:20px;text-decoration:none;color:#000;font-weight:bold;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.1)}small{color:#666;font-weight:normal}</style></head>
+<body><h1>🎮 Kyvorix App</h1><p>⭐ Todos os jogos agora com <b>5 NÍVEIS!</b></p>
 <div class="grid">
-<a class="card" href="games/klondike/"><div class="art" style="background:#cfe8ff">🐻‍❄️<span class="lvl">Nivel <span data-level="klondike">1</span></span></div><div class="name">Klondike <span class="play">▶</span></div></a>
-<a class="card" href="games/spider/"><div class="art" style="background:#2a1a5e">🕷️<span class="lvl">Nivel <span data-level="spider">1</span></span></div><div class="name">Spider <span class="play">▶</span></div></a>
-<a class="card" href="games/freecell/"><div class="art" style="background:#ffd166">👑<span class="lvl">Nivel <span data-level="freecell">1</span></span></div><div class="name">FreeCell <span class="play">▶</span></div></a>
-<a class="card" href="games/pyramid/"><div class="art" style="background:#ff9a3d">🔺<span class="lvl">Nivel <span data-level="pyramid">1</span></span></div><div class="name">Pyramid <span class="play">▶</span></div></a>
-<a class="card" href="games/tripeaks/"><div class="art" style="background:#7ec850">⛰️<span class="lvl">Nivel <span data-level="tripeaks">1</span></span></div><div class="name">TriPeaks <span class="play">▶</span></div></a>
-</div></div>
-<div class="ad">📢 ESPACO ADSENSE - Banner Hub<br><small>Depois colas aqui o teu ins class="adsbygoogle"</small></div>
-<div class="daily"><div style="font-size:40px">📅</div><div style="flex:1"><b>Desafio Diario - <span id="today"></span></b><br><small>Joga hoje e ganha +100 XP. Volta amanha para um novo desafio.</small></div><button onclick="alert('Desafio de hoje: Ganha 1 jogo de Klondike!')">Jogar Hoje →</button></div>
-<div class="casual" id="casual"><h1 style="margin-top:10px">Jogos Casuais</h1><p class="sub">Mais favoritos para relaxar</p>
-<div class="grid">
-<a class="card" href="games/mahjong/"><div class="art" style="background:#b8e6c9">🀄</div><div class="name">Mahjong</div></a>
-<a class="card" href="games/bubble/"><div class="art" style="background:#ffc7e0">🫧</div><div class="name">Bubble</div></a>
-<a class="card" href="games/jewel/"><div class="art" style="background:#d9c8ff">💎</div><div class="name">Jewel</div></a>
-<a class="card" href="games/gravity/"><div class="art" style="background:#a8e063">🧱</div><div class="name">Gravity Blocks</div></a>
-<a class="card" href="games/gemdrop/"><div class="art" style="background:#ffe08a">💠</div><div class="name">Gem Drop</div></a>
-<a class="card" href="games/mahjong3d/"><div class="art" style="background:#bfe3ff">🧊</div><div class="name">Mahjong 3D</div></a>
-
-</div></div></div>
-<footer>© 2026 Kyvorix • <a href="privacy/">Privacy</a> • <a href="terms/">Terms</a> • <a href="contact/">Contact</a><br>Joga gratis em kyvorixapp.com</footer>
-<script>
-document.querySelectorAll('[data-level]').forEach(el=>{el.textContent = localStorage.getItem('kyv_level_'+el.dataset.level) || 1;});
-document.getElementById('today').textContent = new Date().toLocaleDateString('pt-PT');
-if('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js');
-</script>
-<script>
-function lv(k){return localStorage.getItem(k)||'1'}
-document.addEventListener('DOMContentLoaded',()=>{
-let map={'mahjong':'kyvorix_mahjong_level','bubble':'kyvorix_bubble_level','jewel':'kyvorix_jewel_level','gravity':'kyvorix_gravity_level','gemdrop':'kyvorix_gemdrop_level','mahjong3d':'kyvorix_mahjong3d_level'};
-document.querySelectorAll('a').forEach(a=>{
-  let h=a.getAttribute('href')||'';
-  for(let k in map){ if(h.includes(k)){ let b=document.createElement('span'); b.textContent=' ⭐ Nv '+lv(map[k]); b.style.cssText='background:#ffb800;color:#000;font-size:11px;font-weight:800;padding:2px 7px;border-radius:999px;margin-left:6px'; a.appendChild(b); } }
-});
-});
-</script>
-<script>(function(s){s.dataset.zone='12235212',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script>(function(s){s.dataset.zone='12235214',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
+<a class="card" href="games/kyvorix-town/">🏡<br>Kyvorix Town<br><small>⭐ 5 Níveis</small></a>
+<a class="card" href="games/quinta/">🌾<br>Quinta<br><small>⭐ 5 Níveis</small></a>
+<a class="card" href="games/car-screw/">🚗<br>Car Screw<br><small>⭐ 5 Níveis</small></a>
+<a class="card" href="games/screw-guru/">🔩<br>Screw Guru<br><small>⭐ 5 Níveis</small></a>
+<a class="card" href="games/bingo/">🎱<br>Bingo<br><small>⭐ 5 Níveis</small></a>
+<a class="card" href="games/happy-color/">🎨<br>Happy Color<br><small>⭐ 5 Níveis</small></a>
+<a class="card" href="games/cake-sort/">🍰<br>Cake Sort<br><small>⭐ 5 Níveis</small></a>
+<a class="card" href="games/girl-rescue/">👧<br>Girl Rescue<br><small>⭐ 5 Níveis</small></a>
+<a class="card" href="games/uno/">🃏<br>UNO<br><small>⭐ 5 Níveis</small></a>
+</div><p>Versão 2.0 - Níveis</p></body></html>
